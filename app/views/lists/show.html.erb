@@ -3,22 +3,25 @@
   <hr>
 
   <p> Movies:</p>
-  <% @list.bookmarks.each do |bookmark| %>    
-  <% movie = Movie.find(bookmark.movie_id)%> 
-  <div class="container">
-    <p>     
-    <strong>Title: </strong><%= movie.title %> 
-    </p>
-    <p>   
-    <strong>Comment: </strong><%= bookmark.comment %>     </p>
+  <div class="row">
+    <% @list.bookmarks.each do |bookmark| %>    
+    
+    <div class="card m-2" style="width: 18rem;">
+      <%= image_tag bookmark.movie.poster_url, class: "card-img-top" %>
+      <div class="card-body">
+        <h5 class="card-title"><%= bookmark.movie.title %></h5>
+        <p class="card-text">"<%= bookmark.movie.overview %>"</p>
+        <p class="card-text">Comment: <%= bookmark.comment %></p>
+        <%= link_to 'Delete', bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn btn-danger btn-sm' %>
+      </div>
     </div>
-    <%= link_to 'Delete', bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class:'btn btn-danger btn-sm' %>
-    <hr>
-    <% end %>
-
+      <% end %>
+  </div>
     <div class="buttons">
     <%= link_to "Back", lists_path, class:'btn btn-primary btn-sm' %>
     <%= link_to "New Bookmark", new_list_bookmark_path(@list), class:'btn btn-info btn-sm' %>
     </div>
+</div>
   
-  </div>
+  
+  
