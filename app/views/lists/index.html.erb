@@ -1,10 +1,16 @@
 <div class="container">
   <h1> My Lists </h1>
   <hr>
+  <div class="row">
   <% @lists.each do |list| %>
-  <h3><%= link_to list.name, list_path(list) %></h3>
+    <div class="cards">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+        <h3><%= link_to list.name, list_path(list) %></h3>
+      </div>
+    </div>
   <hr>
     <% end %>
   <%= link_to "New List", new_list_path %>
+  </div>
   
 </div>
